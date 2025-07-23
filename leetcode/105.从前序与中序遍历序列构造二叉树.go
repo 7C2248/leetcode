@@ -14,7 +14,25 @@
  * }
  */
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	//test
+
+	n := len(preorder)
+	if n == 0 {
+		return nil
+	}
+	root := TreeNode{
+		Val:   preorder[0],
+		Left:  nil,
+		Right: nil,
+	}
+	if n == 1 {
+		return &root
+	}
+	i := 0
+	for i < n && inorder[i] != preorder[0] {
+		i++
+	}
+	root.Left, root.Right = buildTree(preorder[1:1+i], inorder[:i]), buildTree(preorder[i+1:], inorder[i+1:])
+	return &root
 }
 
 // @lc code=end
