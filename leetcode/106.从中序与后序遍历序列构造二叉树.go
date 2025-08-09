@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=105 lang=golang
+ * @lc app=leetcode.cn id=106 lang=golang
  *
- * [105] 从前序与中序遍历序列构造二叉树
+ * [106] 从中序与后序遍历序列构造二叉树
  */
 
 // @lc code=start
@@ -13,28 +13,29 @@
  *     Right *TreeNode
  * }
  */
-func buildTree(preorder []int, inorder []int) *TreeNode {
-	n := len(preorder)
+func buildTree(inorder []int, postorder []int) *TreeNode {
+	n := len(inorder)
 	if n == 0 {
 		return nil
 	}
 	if n == 1 {
 		rr := TreeNode{
-			Val:   preorder[0],
+			Val:   postorder[n-1],
 			Left:  nil,
 			Right: nil,
 		}
 		return &rr
 	}
+
 	i := 0
-	for i < n && inorder[i] != preorder[0] {
+	for i < n && inorder[i] != postorder[n-1] {
 		i++
 	}
-	l := buildTree(preorder[1:i+1], inorder[0:i])
-	r := buildTree(preorder[i+1:], inorder[i+1:])
+	l := buildTree(inorder[:i], postorder[:i])
+	r := buildTree(inorder[i+1:], postorder[i:n-1])
 
 	rr := TreeNode{
-		Val:   preorder[0],
+		Val:   postorder[n-1],
 		Left:  l,
 		Right: r,
 	}
