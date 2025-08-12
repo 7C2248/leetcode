@@ -15,6 +15,48 @@
  */
 func balanceBST(root *TreeNode) *TreeNode {
 
+	//return balanceByRotate(root)
+	return balanceByRebuild(root)
+}
+
+func balanceByRebuild(root *TreeNode) *TreeNode {
+
+	inorder := getInorder(root)
+	return buildBST(inorder)
+}
+
+func buildBST(inorder []int) *TreeNode {
+
+	n := len(inorder)
+	if n == 0 {
+		return nil
+	}
+
+	v := &TreeNode{Val: inorder[n/2]}
+	v.Left = buildBST(inorder[:n/2])
+	v.Right = buildBST(inorder[n/2+1:])
+	return v
+}
+
+func getInorder(root *TreeNode) []int {
+	inorder := make([]int, 0)
+	var getInorder0 func(root *TreeNode)
+	getInorder0 = func(root *TreeNode) {
+
+		if root == nil {
+			return
+		}
+		getInorder0(root.Left)
+		inorder = append(inorder, root.Val)
+		getInorder0(root.Right)
+	}
+
+	getInorder0(root)
+
+	return inorder
+}
+
+func balanceByRotate(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
 	}
