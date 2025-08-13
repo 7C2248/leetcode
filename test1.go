@@ -18,9 +18,11 @@ func main() {
 	r.Insert(2)
 	r.Remove(1)
 	fmt.Println(r.GetRandom())
-	*/
+
 	s := []int{-1, 0, 1, 2, -1, -4}
 	fmt.Println(threeSum(s))
+	*/
+	fmt.Printf("%.50f", 0.00001)
 
 }
 
