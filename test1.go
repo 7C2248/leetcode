@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
 
 func main() {
@@ -11,112 +9,145 @@ func main() {
 	sort(test, 0, len(test))
 	fmt.Println(test)
 
-	r := Constructor()
-	r.Insert(0)
-	r.Insert(1)
-	r.Remove(0)
-	r.Insert(2)
-	r.Remove(1)
-	fmt.Println(r.GetRandom())
-
-	s := []int{-1, 0, 1, 2, -1, -4}
-	fmt.Println(threeSum(s))
+	board := [][]byte{
+		[]byte{'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a'},
+		[]byte{'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'},
+		[]byte{'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a'},
+		[]byte{'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'},
+		[]byte{'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a'},
+		[]byte{'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'},
+		[]byte{'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a'},
+		[]byte{'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'},
+		[]byte{'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a'},
+		[]byte{'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'},
+	}
+	words := []string{"ababababaa", "ababababab", "ababababac", "ababababad", "ababababae", "ababababaf", "ababababag", "ababababah", "ababababai", "ababababaj", "ababababak", "ababababal", "ababababam", "ababababan", "ababababao", "ababababap", "ababababaq", "ababababar", "ababababas", "ababababat", "ababababau", "ababababav", "ababababaw", "ababababax", "ababababay", "ababababaz", "ababababba", "ababababbb", "ababababbc", "ababababbd", "ababababbe", "ababababbf", "ababababbg", "ababababbh", "ababababbi", "ababababbj", "ababababbk", "ababababbl", "ababababbm", "ababababbn", "ababababbo", "ababababbp", "ababababbq", "ababababbr", "ababababbs", "ababababbt", "ababababbu", "ababababbv", "ababababbw", "ababababbx", "ababababby", "ababababbz", "ababababca", "ababababcb", "ababababcc", "ababababcd", "ababababce", "ababababcf", "ababababcg", "ababababch", "ababababci", "ababababcj", "ababababck", "ababababcl", "ababababcm", "ababababcn", "ababababco", "ababababcp", "ababababcq", "ababababcr", "ababababcs", "ababababct", "ababababcu", "ababababcv", "ababababcw", "ababababcx", "ababababcy", "ababababcz", "ababababda", "ababababdb", "ababababdc", "ababababdd", "ababababde", "ababababdf", "ababababdg", "ababababdh", "ababababdi", "ababababdj", "ababababdk", "ababababdl", "ababababdm", "ababababdn", "ababababdo", "ababababdp", "ababababdq", "ababababdr", "ababababds", "ababababdt", "ababababdu", "ababababdv", "ababababdw", "ababababdx", "ababababdy", "ababababdz", "ababababea", "ababababeb", "ababababec", "ababababed", "ababababee", "ababababef", "ababababeg", "ababababeh", "ababababei", "ababababej", "ababababek", "ababababel", "ababababem", "ababababen", "ababababeo", "ababababep", "ababababeq", "ababababer", "ababababes", "ababababet", "ababababeu", "ababababev", "ababababew", "ababababex", "ababababey", "ababababez", "ababababfa", "ababababfb", "ababababfc", "ababababfd", "ababababfe", "ababababff", "ababababfg", "ababababfh", "ababababfi", "ababababfj", "ababababfk", "ababababfl", "ababababfm", "ababababfn", "ababababfo", "ababababfp", "ababababfq", "ababababfr", "ababababfs", "ababababft", "ababababfu", "ababababfv", "ababababfw", "ababababfx", "ababababfy", "ababababfz", "ababababga", "ababababgb", "ababababgc", "ababababgd", "ababababge", "ababababgf", "ababababgg", "ababababgh", "ababababgi", "ababababgj", "ababababgk", "ababababgl", "ababababgm", "ababababgn", "ababababgo", "ababababgp", "ababababgq", "ababababgr", "ababababgs", "ababababgt", "ababababgu", "ababababgv", "ababababgw", "ababababgx", "ababababgy", "ababababgz", "ababababha", "ababababhb", "ababababhc", "ababababhd", "ababababhe", "ababababhf", "ababababhg", "ababababhh", "ababababhi", "ababababhj", "ababababhk", "ababababhl", "ababababhm", "ababababhn", "ababababho", "ababababhp", "ababababhq", "ababababhr", "ababababhs", "ababababht", "ababababhu", "ababababhv", "ababababhw", "ababababhx", "ababababhy", "ababababhz", "ababababia", "ababababib", "ababababic", "ababababid", "ababababie", "ababababif", "ababababig", "ababababih", "ababababii", "ababababij", "ababababik", "ababababil", "ababababim", "ababababin", "ababababio", "ababababip", "ababababiq", "ababababir", "ababababis", "ababababit", "ababababiu", "ababababiv", "ababababiw", "ababababix", "ababababiy", "ababababiz", "ababababja", "ababababjb", "ababababjc", "ababababjd", "ababababje", "ababababjf", "ababababjg", "ababababjh", "ababababji", "ababababjj", "ababababjk", "ababababjl", "ababababjm", "ababababjn", "ababababjo", "ababababjp", "ababababjq", "ababababjr", "ababababjs", "ababababjt", "ababababju", "ababababjv", "ababababjw", "ababababjx", "ababababjy", "ababababjz", "ababababka", "ababababkb", "ababababkc", "ababababkd", "ababababke", "ababababkf", "ababababkg", "ababababkh", "ababababki", "ababababkj", "ababababkk", "ababababkl", "ababababkm", "ababababkn", "ababababko", "ababababkp", "ababababkq", "ababababkr", "ababababks", "ababababkt", "ababababku", "ababababkv", "ababababkw", "ababababkx", "ababababky", "ababababkz", "ababababla", "abababablb", "abababablc", "ababababld", "abababable", "abababablf", "abababablg", "abababablh", "ababababli", "abababablj", "abababablk", "ababababll", "abababablm", "ababababln", "abababablo", "abababablp", "abababablq", "abababablr", "ababababls", "abababablt", "abababablu", "abababablv", "abababablw", "abababablx", "abababably", "abababablz", "ababababma", "ababababmb", "ababababmc", "ababababmd", "ababababme", "ababababmf", "ababababmg", "ababababmh", "ababababmi", "ababababmj", "ababababmk", "ababababml", "ababababmm", "ababababmn", "ababababmo", "ababababmp", "ababababmq", "ababababmr", "ababababms", "ababababmt", "ababababmu", "ababababmv", "ababababmw", "ababababmx", "ababababmy", "ababababmz", "ababababna", "ababababnb", "ababababnc", "ababababnd", "ababababne", "ababababnf", "ababababng", "ababababnh", "ababababni", "ababababnj", "ababababnk", "ababababnl", "ababababnm", "ababababnn", "ababababno", "ababababnp", "ababababnq", "ababababnr", "ababababns", "ababababnt", "ababababnu", "ababababnv", "ababababnw", "ababababnx", "ababababny", "ababababnz", "ababababoa", "ababababob", "ababababoc", "ababababod", "ababababoe", "ababababof", "ababababog", "ababababoh", "ababababoi", "ababababoj", "ababababok", "ababababol", "ababababom", "ababababon", "ababababoo", "ababababop", "ababababoq", "ababababor", "ababababos", "ababababot", "ababababou", "ababababov", "ababababow", "ababababox", "ababababoy", "ababababoz", "ababababpa", "ababababpb", "ababababpc", "ababababpd", "ababababpe", "ababababpf", "ababababpg", "ababababph", "ababababpi", "ababababpj", "ababababpk", "ababababpl", "ababababpm", "ababababpn", "ababababpo", "ababababpp", "ababababpq", "ababababpr", "ababababps", "ababababpt", "ababababpu", "ababababpv", "ababababpw", "ababababpx", "ababababpy", "ababababpz", "ababababqa", "ababababqb", "ababababqc", "ababababqd", "ababababqe", "ababababqf", "ababababqg", "ababababqh", "ababababqi", "ababababqj", "ababababqk", "ababababql", "ababababqm", "ababababqn", "ababababqo", "ababababqp", "ababababqq", "ababababqr", "ababababqs", "ababababqt", "ababababqu", "ababababqv", "ababababqw", "ababababqx", "ababababqy", "ababababqz", "ababababra", "ababababrb", "ababababrc", "ababababrd", "ababababre", "ababababrf", "ababababrg", "ababababrh", "ababababri", "ababababrj", "ababababrk", "ababababrl", "ababababrm", "ababababrn", "ababababro", "ababababrp", "ababababrq", "ababababrr", "ababababrs", "ababababrt", "ababababru", "ababababrv", "ababababrw", "ababababrx", "ababababry", "ababababrz", "ababababsa", "ababababsb", "ababababsc", "ababababsd", "ababababse", "ababababsf", "ababababsg", "ababababsh", "ababababsi", "ababababsj", "ababababsk", "ababababsl", "ababababsm", "ababababsn", "ababababso", "ababababsp", "ababababsq", "ababababsr", "ababababss", "ababababst", "ababababsu", "ababababsv", "ababababsw", "ababababsx", "ababababsy", "ababababsz", "ababababta", "ababababtb", "ababababtc", "ababababtd", "ababababte", "ababababtf", "ababababtg", "ababababth", "ababababti", "ababababtj", "ababababtk", "ababababtl", "ababababtm", "ababababtn", "ababababto", "ababababtp", "ababababtq", "ababababtr", "ababababts", "ababababtt", "ababababtu", "ababababtv", "ababababtw", "ababababtx", "ababababty", "ababababtz", "ababababua", "ababababub", "ababababuc", "ababababud", "ababababue", "ababababuf", "ababababug", "ababababuh", "ababababui", "ababababuj", "ababababuk", "ababababul", "ababababum", "ababababun", "ababababuo", "ababababup", "ababababuq", "ababababur", "ababababus", "ababababut", "ababababuu", "ababababuv", "ababababuw", "ababababux", "ababababuy", "ababababuz", "ababababva", "ababababvb", "ababababvc", "ababababvd", "ababababve", "ababababvf", "ababababvg", "ababababvh", "ababababvi", "ababababvj", "ababababvk", "ababababvl", "ababababvm", "ababababvn", "ababababvo", "ababababvp", "ababababvq", "ababababvr", "ababababvs", "ababababvt", "ababababvu", "ababababvv", "ababababvw", "ababababvx", "ababababvy", "ababababvz", "ababababwa", "ababababwb", "ababababwc", "ababababwd", "ababababwe", "ababababwf", "ababababwg", "ababababwh", "ababababwi", "ababababwj", "ababababwk", "ababababwl", "ababababwm", "ababababwn", "ababababwo", "ababababwp", "ababababwq", "ababababwr", "ababababws", "ababababwt", "ababababwu", "ababababwv", "ababababww", "ababababwx", "ababababwy", "ababababwz", "ababababxa", "ababababxb", "ababababxc", "ababababxd", "ababababxe", "ababababxf", "ababababxg", "ababababxh", "ababababxi", "ababababxj", "ababababxk", "ababababxl", "ababababxm", "ababababxn", "ababababxo", "ababababxp", "ababababxq", "ababababxr", "ababababxs", "ababababxt", "ababababxu", "ababababxv", "ababababxw", "ababababxx", "ababababxy", "ababababxz", "ababababya", "ababababyb", "ababababyc", "ababababyd", "ababababye", "ababababyf", "ababababyg", "ababababyh", "ababababyi", "ababababyj", "ababababyk", "ababababyl", "ababababym", "ababababyn", "ababababyo", "ababababyp", "ababababyq", "ababababyr", "ababababys", "ababababyt", "ababababyu", "ababababyv", "ababababyw", "ababababyx", "ababababyy", "ababababyz", "ababababza", "ababababzb", "ababababzc", "ababababzd", "ababababze", "ababababzf", "ababababzg", "ababababzh", "ababababzi", "ababababzj", "ababababzk", "ababababzl", "ababababzm", "ababababzn", "ababababzo", "ababababzp", "ababababzq", "ababababzr", "ababababzs", "ababababzt", "ababababzu", "ababababzv", "ababababzw", "ababababzx", "ababababzy", "ababababzz"}
+	fmt.Println(findWords(board, words))
 	*/
-	fmt.Println((ladderLength("hbo", "qbx", []string{"abo", "hco", "hbw", "ado", "abq", "hcd", "hcj", "hww", "qbq", "qby", "qbz", "qbx", "qbw"})))
+	fmt.Println((combine(4, 3)))
 }
 
-type nn struct {
-	word  string
-	count int
+func combine(n int, k int) [][]int {
+	result := [][]int{}
+
+	var dfs func(nn []int, i int)
+	dfs = func(nn []int, i int) {
+		if i == k {
+			result = append(result, nn[1:])
+			return
+		}
+
+		for j := nn[len(nn)-1] + 1; j <= n; j++ {
+			r := append(nn, j)
+			dfs(r, i+1)
+		}
+	}
+
+	dfs([]int{0}, 0)
+
+	return result
 }
 
-func ladderLength(beginWord string, endWord string, wordList []string) int {
-	n := len(beginWord)
+type Trie struct {
+	neib   []*Trie
+	letter byte
+}
 
-	sign := false
-	for _, w := range wordList {
-		if w == endWord {
-			sign = true
-			break
+type LetterIndex struct {
+	alphabit [26][]*Trie
+}
+
+func BuildTrieFromMatrix(matrix [][]byte) *LetterIndex {
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return &LetterIndex{}
+	}
+
+	n, m := len(matrix), len(matrix[0])
+	index := &LetterIndex{}
+	for i := 0; i < 26; i++ {
+		index.alphabit[i] = make([]*Trie, 0)
+	}
+
+	nodes := make([][]*Trie, n)
+	for i := 0; i < n; i++ {
+		nodes[i] = make([]*Trie, m)
+		for j := 0; j < m; j++ {
+			node := &Trie{
+				neib:   make([]*Trie, 0),
+				letter: matrix[i][j],
+			}
+			nodes[i][j] = node
+
+			idx := matrix[i][j] - 'a'
+			index.alphabit[idx] = append(index.alphabit[idx], node)
 		}
 	}
-	if !sign {
-		return 0
+
+	// 构建邻接关系（上下左右四个方向）
+	directions := [][2]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}
+
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			currentNode := nodes[i][j]
+
+			for _, dir := range directions {
+				ni, nj := i+dir[0], j+dir[1]
+				if ni >= 0 && ni < n && nj >= 0 && nj < m {
+					neighbor := nodes[ni][nj]
+					currentNode.neib = append(currentNode.neib, neighbor)
+				}
+			}
+		}
 	}
 
-	queueFront := []nn{{word: beginWord, count: 1}}
-	visitedFront := map[string]int{beginWord: 1}
+	return index
+}
 
-	queueBack := []nn{{word: endWord, count: 1}}
-	visitedBack := map[string]int{endWord: 1}
+func findWords(board [][]byte, words []string) []string {
 
-	for len(queueFront) > 0 && len(queueBack) > 0 {
+	index := BuildTrieFromMatrix(board)
+	result := []string{}
 
-		if len(queueFront) > len(queueBack) {
-			queueFront, queueBack = queueBack, queueFront
-			visitedFront, visitedBack = visitedBack, visitedFront
-		}
+	for i := range words {
+		word, nw := words[i], len(words[i])
+		start := index.alphabit[word[0]-'a']
+		found := false
 
-		nextQueue := []nn{}
-		for _, cur := range queueFront {
-			curWord, curStep := cur.word, cur.count
+		for j := range start {
+			visited := make(map[*Trie]bool)
+			var dfs func(now *Trie, index int) bool
 
-			for _, w := range wordList {
-				diff := 0
-				for i := 0; i < n; i++ {
-					if curWord[i] != w[i] {
-						diff++
-						if diff > 1 {
-							break
+			dfs = func(now *Trie, index int) bool {
+				if now.letter != word[index] {
+					return false
+				}
+
+				if index == nw-1 {
+					return true
+				}
+				visited[now] = true
+				defer delete(visited, now)
+
+				for i := range now.neib {
+					if !visited[now.neib[i]] {
+						if dfs(now.neib[i], index+1) {
+							return true
 						}
 					}
 				}
-				if diff == 1 {
-					if step, ok := visitedBack[w]; ok {
-						return curStep + step
-					}
-					if _, ok := visitedFront[w]; !ok {
-						visitedFront[w] = curStep + 1
-						nextQueue = append(nextQueue, nn{word: w, count: curStep + 1})
-					}
-				}
+				return false
+			}
+
+			if dfs(start[j], 0) {
+				found = true
+				break
 			}
 		}
-		queueFront = nextQueue
-	}
-	return 0
-}
-
-func threeSum(nums []int) [][]int {
-
-	result := make([][]int, 0)
-	n := len(nums)
-	sort(nums, 0, n)
-	for i := 0; i <= n-3; i++ {
-
-		if i > 0 && nums[i] == nums[i-1] {
-			continue
-		}
-		if nums[i] > 0 {
-			break
-		}
-
-		for j, k := i+1, n-1; j < k; j++ {
-
-			if j > i+1 && nums[j] == nums[j-1] {
-				continue
-			}
-			for nums[i]+nums[j]+nums[k] > 0 && k > j {
-				k--
-			}
-
-			if nums[i]+nums[j]+nums[k] == 0 {
-				tt := make([]int, 0)
-				tt = append(tt, nums[i], nums[j], nums[k])
-				result = append(result, tt)
-			}
+		if found {
+			result = append(result, words[i])
 		}
 	}
+
 	return result
 }
 
@@ -141,52 +172,4 @@ func sort(aa []int, left int, right int) {
 	sort(aa, left, i)
 	sort(aa, i+1, right)
 	return
-}
-
-type RandomizedSet struct {
-	len  int
-	dict map[int]int
-	list []int
-	rng  *rand.Rand
-}
-
-func Constructor() RandomizedSet {
-	r := RandomizedSet{
-		len:  0,
-		dict: make(map[int]int),
-		list: make([]int, 0),
-		rng:  rand.New(rand.NewSource(time.Now().UnixNano())),
-	}
-
-	return r
-}
-
-func (this *RandomizedSet) Insert(val int) bool {
-	_, ok := this.dict[val]
-	if ok {
-		return false
-	}
-	this.list = append(this.list, val)
-	this.dict[val] = this.len
-	this.len += 1
-	return true
-}
-
-func (this *RandomizedSet) Remove(val int) bool {
-	index, ok := this.dict[val]
-	if ok {
-
-		this.len -= 1
-		this.list[index] = this.list[this.len]
-		this.dict[this.list[index]] = index
-		this.list = this.list[0:this.len]
-		delete(this.dict, val)
-		return true
-	}
-	return false
-}
-
-func (this *RandomizedSet) GetRandom() int {
-	i := this.rng.Intn(this.len)
-	return this.list[i]
 }
