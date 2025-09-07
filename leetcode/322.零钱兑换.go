@@ -5,46 +5,33 @@
  */
 
 // @lc code=start
-import (
-	"sort"
-)
-
 func coinChange(coins []int, amount int) int {
-
-	if amount == 0 {
-		return 0
+	const INF = 1<<31 - 1
+	dp := make([]int, amount+1)
+	for i := 1; i <= amount; i++ {
+		dp[i] = INF
 	}
-	sort.Ints(coins)
-	mk := make([]int, amount+1)
-	mk[amount] = -1
-	for _, v := range coins {
-		if v <= amount {
-			mk[v] = 1
-		}
-	}
+	dp[0] = 0
 
-	for i := coins[0]; i < amount; i++ {
-		if mk[i] <= 0 {
-			continue
-		}
-		for _, v := range coins {
-			if i+v <= amount {
-				if mk[i+v] > 0 {
-					mk[i+v] = min(mk[i+v], mk[i]+1)
-				} else {
-					mk[i+v] = mk[i] + 1
-				}
+	for _, coin := range coins {
+		for i := coin; i <= amount; i++ {
+			if dp[i-coin] != INF {
+				dp[i] = min(dp[i], dp[i-coin]+1)
 			}
 		}
 	}
-	return mk[amount]
+
+	if dp[amount] == INF {
+		return -1
+	}
+	return dp[amount]
 }
 
 func min(a, b int) int {
-	if a > b {
-		return b
+	if a < b {
+		return a
 	}
-	return a
+	return b
 }
 
 // @lc code=end
