@@ -42,6 +42,95 @@ func sortList(head *ListNode) *ListNode {
 }
 */
 
+/*
+// 自底向上递归，空间O(1)
+// cut 从 head 开始切出前 n 个节点（不足则切到链表尾）
+// 返回剩余链表头 next
+func cut(head *ListNode, n int) (next *ListNode) {
+    if head == nil {
+        return nil
+    }
+    cur := head
+    for i := 1; i < n && cur.Next != nil; i++ {
+        cur = cur.Next
+    }
+
+    next = cur.Next
+    cur.Next = nil // 切断
+    return
+}
+
+// merge 合并两个已排序链表，返回新头和新尾
+func merge(l, r *ListNode) (head, tail *ListNode) {
+    var dummy ListNode          // 栈上分配，无堆内存
+    cur := &dummy
+
+    for l != nil && r != nil {
+        if l.Val <= r.Val {
+            cur.Next = l
+            l = l.Next
+        } else {
+            cur.Next = r
+            r = r.Next
+        }
+        cur = cur.Next
+    }
+    // 连接剩余部分
+    if l != nil {
+        cur.Next = l
+    } else {
+        cur.Next = r
+    }
+    // 找尾
+    for cur.Next != nil {
+        cur = cur.Next
+    }
+    return dummy.Next, cur
+}
+
+func sortList(head *ListNode) *ListNode {
+    // 1. 计算长度
+    length := 0
+    for n := head; n != nil; n = n.Next {
+        length++
+    }
+
+    start := &ListNode{Next: head}
+
+    // 2. 自底向上归并
+    for step := 1; step < length; step <<= 1 {
+        prev := start       // 已合并部分的前驱
+        cur := start.Next   // 当前待处理段头
+
+        for cur != nil {
+            // 切第一段
+            left := cur
+            mid := cut(left, step)
+
+            if mid == nil {
+                // 只剩一段，无需合并，直接连回
+                prev.Next = left
+                break
+            }
+
+            // 切第二段
+            right := mid
+            next := cut(right, step)
+
+            // 合并两段并接回链表
+            mergedHead, mergedTail := merge(left, right)
+            prev.Next = mergedHead
+            mergedTail.Next = next
+
+            // 移动指针
+            prev = mergedTail
+            cur = next
+        }
+    }
+
+    return start.Next
+}
+*/
 func sortList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head

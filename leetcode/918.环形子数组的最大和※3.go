@@ -23,6 +23,7 @@ func maxSubarraySumCircular(nums []int) int {
 		res = max(res, pre-q[0].val)
 
 		//保证数组始终递增，删除大于当前前缀和的队尾元素
+		//保证能在O(1)时间内找到当前窗口内的最小的前缀和
 		for len(q) > 0 && q[len(q)-1].val >= pre {
 			q = q[:len(q)-1]
 		}

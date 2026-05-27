@@ -9,7 +9,6 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 
 	sign := true
 	result := []int{}
-	m := make(map[int]bool)
 
 	graph := make([][]int, numCourses)
 	for _, p := range prerequisites {
@@ -24,12 +23,6 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 			return false
 		}
 		if state[course] == 2 {
-
-			if _, ok := m[course]; !ok {
-				result = append(result, course)
-				m[course] = true
-			}
-
 			return true
 		}
 
@@ -40,10 +33,8 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 			}
 		}
 
-		if _, ok := m[course]; !ok {
-			result = append(result, course)
-			m[course] = true
-		}
+		// 首次遍历时如果能完成该课程则说明该课程之前的都已经完成，所以直接添加到结果后面。
+		result = append(result, course)
 		state[course] = 2
 		return true
 	}

@@ -42,7 +42,7 @@ func kthSmallest(root *TreeNode, k int) int {
 }
 
 /*
-//递归开销过大
+// 递归开销会更大，但没有差距较小
 func dfs_kth(root *TreeNode, k int) int {
 
 	var dfs func(root *TreeNode) bool
