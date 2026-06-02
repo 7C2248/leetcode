@@ -47,7 +47,7 @@ func longestIncreasingPath(matrix [][]int) int {
 
 /*
 
-// 迭代排序dp
+// 迭代排序dp性能更优
 func longestIncreasingPath(matrix [][]int) int {
     m, n := len(matrix), len(matrix[0])
 
