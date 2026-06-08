@@ -24,7 +24,20 @@ func main() {
 		fmt.Println(findWords(board, words))
 	*/
 	//fmt.Println((combine(4, 3)))
-	fmt.Println(1 ^ 2)
+	fmt.Println((pow(5, 3)))
+}
+
+func pow(x, n int) int {
+	base := x
+	result := 1
+	for n > 0 {
+		if n%2 == 1 {
+			result *= base
+		}
+		base *= base
+		n >>= 1
+	}
+	return result
 }
 
 func combine(n int, k int) [][]int {

@@ -156,3 +156,71 @@ func reverse(nums []int) {
 }
 
 */
+
+/*
+
+//我的实现，需要优化，对于每个起始通过dp保存之前起始的可行值。
+func maxValue(nums []int, k int) int {
+
+	n := len(nums)
+	orSum := 0
+	for _, v := range nums {
+		orSum |= v
+	}
+	result := -1
+	// 分割点
+	for i := k; i <= n-k; i++ {
+		//在前 i 个元素中，选出长度为 j 的子序列，能达到的所有 OR 值的集合。
+		pre := make([][]bool, k+1)
+		//在后 i 个元素中，选出长度为 j 的子序列，能达到的所有 OR 值的集合。
+		suf := make([][]bool, k+1)
+		for j := 0; j <= k; j++ {
+			pre[j] = make([]bool, orSum+1)
+			suf[j] = make([]bool, orSum+1)
+		}
+		pre[0][0] = true
+		suf[0][0] = true
+		v1 := []int{}
+		// 遍历前i个元素
+		for j := 0; j < i; j++ {
+			// 倒序更新
+			for kk := k - 1; kk > -1; kk-- {
+				for oS, v0 := range pre[kk] {
+					if v0 {
+						pre[kk+1][oS|nums[j]] = true
+					}
+				}
+			}
+			for kk, v := range pre[k] {
+				if v {
+					v1 = append(v1, kk)
+				}
+			}
+		}
+
+		v2 := []int{}
+		for j := n - 1; j >= i; j-- {
+			for kk := k - 1; kk > -1; kk-- {
+				for oS, v0 := range suf[kk] {
+					if v0 {
+						suf[kk+1][oS|nums[j]] = true
+					}
+				}
+			}
+			for kk, v := range suf[k] {
+				if v {
+					v2 = append(v2, kk)
+				}
+			}
+		}
+
+		for _, v11 := range v1 {
+			for _, v22 := range v2 {
+				result = max(result, v11^v22)
+			}
+		}
+
+	}
+	return result
+}
+*/
