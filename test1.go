@@ -24,7 +24,9 @@ func main() {
 		fmt.Println(findWords(board, words))
 	*/
 	//fmt.Println((combine(4, 3)))
-	fmt.Println((pow(5, 3)))
+
+	fmt.Printf("teststr type: %s", string(7+'0')+"2")
+	fmt.Printf("teststr type: %s", "2"+string(7+'0'))
 }
 
 func pow(x, n int) int {
