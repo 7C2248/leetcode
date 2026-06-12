@@ -6,38 +6,32 @@
 
 // @lc code=start
 func maxValueOfCoins(piles [][]int, k int) int {
-	// dp[j] = 取 j 枚硬币的最大价值，-1 表示不可达
+
+	// 顺序遍历每个栈，记录对应栈下进行k次选择的最大值。
 	dp := make([]int, k+1)
 	for j := 1; j <= k; j++ {
 		dp[j] = -1
 	}
 
 	for _, pile := range piles {
-		// 最多能从当前栈取多少枚
-		m := len(pile)
-		if m > k {
-			m = k
+		// 单个栈中的前缀和等价于不同重量和价值的货物。
+		pl := len(pile)
+		preSum := make([]int, pl)
+		for i, v := range pile {
+			if i == 0 {
+				preSum[0] = v
+				continue
+			}
+			preSum[i] = v + preSum[i-1]
 		}
-		// 计算前缀和（1-based，prefix[t] 表示取 t 枚的价值）
-		prefix := make([]int, m+1)
-		for t := 1; t <= m; t++ {
-			prefix[t] = prefix[t-1] + pile[t-1]
-		}
-
-		// 分组背包：倒序更新 dp
-		for j := k; j >= 0; j-- {
-			// 遍历当前栈可取的数量 t
-			for t := 1; t <= m; t++ {
-				if j >= t && dp[j-t] != -1 {
-					if dp[j] < dp[j-t]+prefix[t] {
-						dp[j] = dp[j-t] + prefix[t]
-					}
+		for i := k; i > 0; i-- {
+			for j := min(pl, i) - 1; j > -1; j-- {
+				if dp[i-j-1] != -1 {
+					dp[i] = max(dp[i], dp[i-j-1]+preSum[j])
 				}
 			}
 		}
 	}
-
-	// 题目保证 k <= 总硬币数，所以 dp[k] 一定可达
 	return dp[k]
 }
 
