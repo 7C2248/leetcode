@@ -7,6 +7,7 @@
 // @lc code=start
 func maxRemovals(source, pattern string, targetIndices []int) int {
 	m := len(pattern)
+	//恰好匹配 pattern 的前 j 个字符的前提下，能删除的最大字符数
 	f := make([]int, m+1)
 	for i := 1; i <= m; i++ {
 		f[i] = math.MinInt
