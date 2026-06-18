@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=300 lang=golang
+ * @lc app=leetcode.cn id=1671 lang=golang
  *
- * [300] 最长递增子序列
+ * [1671] 得到山形数组的最少删除次数
  */
 
 // @lc code=start
@@ -26,6 +26,37 @@ func lengthOfLIS(nums []int) int {
 
 	return len(dp)
 }
+func ReverseSlice(s []int) {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+}
+func minimumMountainRemovals(nums []int) int {
+
+	n := len(nums)
+	maximum := 0
+	for i := 1; i < n-1; i++ {
+		left := lengthOfLIS(nums[:i+1])
+		if left == 1 {
+			continue
+		}
+		temp := make([]int, max(n-i, 0))
+		copy(temp, nums[i:])
+		ReverseSlice(temp)
+		right := lengthOfLIS(temp)
+		if right == 1 {
+			continue
+		}
+		if left+right-1 > maximum {
+			maximum = left + right - 1
+		}
+	}
+	return n - maximum
+}
 
 // @lc code=end
+
+
+
+
 
