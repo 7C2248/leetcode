@@ -18,6 +18,8 @@ func minimumCost(nums []int, cost []int, k int) int64 {
 	for i:=n-1;i>-1;i--{
 		suffixC[i] += suffixC[i+1]+cost[i]
 	}
+	// 不再是表达nums[:i]的最小划分代价，转变为计算dp[n]的中间变量。
+	// dp的转移由题目要求进行决定
 	dp := make([]int, n+1)
 	for i := 1; i <= n; i++ {
 		dp[i] = math.MaxInt
